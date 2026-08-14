@@ -1,0 +1,23 @@
+{
+  "name": "cyber-shield",
+  "version": "1.0.0",
+  "description": "CyberShield — AI-Powered Digital Fraud & Phishing Detection Platform (SIH Hackathon Prototype)",
+  "main": "server.js",
+  "scripts": {
+    "start": "agy-node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "cybersecurity",
+    "phishing-detection",
+    "ai",
+    "sih",
+    "fraud-detection",
+    "soc-dashboard"
+  ],
+  "author": "CyberShield Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.3"
+  }
+}

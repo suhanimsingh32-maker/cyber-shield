@@ -1,0 +1,374 @@
+{
+  "users": [
+    {
+      "id": "usr_demo_01",
+      "name": "SecOps Analyst",
+      "email": "analyst@cybershield.sih",
+      "role": "analyst",
+      "xp": 1450,
+      "level": 4,
+      "badges": [
+        "Phishing Hunter",
+        "UPI Master",
+        "QR Guardian",
+        "First Scan"
+      ],
+      "createdAt": "2026-08-10T08:00:00.000Z"
+    }
+  ],
+  "scans": [
+    {
+      "id": "SCAN-22726",
+      "target": "https://in.search.yahoo.com/search?fr=mcafee&type=E210IN714G0&p=vercel",
+      "scan_type": "url",
+      "verdict": "SAFE",
+      "severity": "SAFE",
+      "risk_score": 0,
+      "confidence": 60,
+      "threat_type": "BENIGN",
+      "analysis_source": "local_heuristics",
+      "user_id": null,
+      "timestamp": "2026-08-14T08:21:04.925Z"
+    },
+    {
+      "id": "SCAN-94821",
+      "timestamp": "2026-08-14T08:45:12.000Z",
+      "type": "url",
+      "target": "https://sbi-netbanking-verification-online.xyz/login.php",
+      "verdict": "DANGEROUS",
+      "severity": "CRITICAL",
+      "riskScore": 94,
+      "confidence": 96,
+      "threatType": "PHISHING",
+      "summary": "High-confidence brand impersonation targeting State Bank of India netbanking credentials via a spoofed domain.",
+      "signals": [
+        {
+          "category": "URL Signals",
+          "name": "Lookalike Brand Domain",
+          "scoreImpact": 28,
+          "severity": "CRITICAL",
+          "explanation": "Domain contains 'sbi-netbanking' mimicking official sbi.co.in portal."
+        },
+        {
+          "category": "URL Signals",
+          "name": "Suspicious TLD (.xyz)",
+          "scoreImpact": 18,
+          "severity": "HIGH",
+          "explanation": "TLD .xyz is heavily correlated with low-cost phishing campaigns."
+        },
+        {
+          "category": "Domain Signals",
+          "name": "Newly Registered Domain (2 Days Old)",
+          "scoreImpact": 22,
+          "severity": "CRITICAL",
+          "explanation": "Domain WHOIS shows creation date less than 48 hours ago."
+        },
+        {
+          "category": "Behavior Signals",
+          "name": "Credential Harvesting Input Form",
+          "scoreImpact": 16,
+          "severity": "HIGH",
+          "explanation": "Page contains hidden password & netbanking PIN submit triggers."
+        },
+        {
+          "category": "Reputation Signals",
+          "name": "Blacklist Match (CyberShield Global Feed)",
+          "scoreImpact": 10,
+          "severity": "MEDIUM",
+          "explanation": "URL reported 14 times in the past 3 hours across Indian banking feeds."
+        }
+      ],
+      "actions": [
+        "DO NOT CLICK OR NAVIGATE TO THIS LINK",
+        "DO NOT ENTER YOUR USERNAME, PASSWORD OR NETBANKING PIN",
+        "REPORT THIS PHISHING URL TO SBI CYBER CELL (report.phishing@sbi.co.in)",
+        "IF ALREADY ACCESSED, IMMEDIATELY CHANGE YOUR NETBANKING PASSWORD & LOCK ACCOUNT"
+      ]
+    },
+    {
+      "id": "SCAN-88301",
+      "timestamp": "2026-08-14T07:12:00.000Z",
+      "type": "message",
+      "target": "URGENT! SBI Account Notice: Your account 3094** will be BLOCKED today. Update PAN immediately to avoid fine of Rs 10,000: http://sbi-pan-update.top/auth",
+      "verdict": "DANGEROUS",
+      "severity": "HIGH",
+      "riskScore": 88,
+      "confidence": 94,
+      "threatType": "SMS SCAM",
+      "summary": "Urgency-based SMS scam employing fear of account blockage and financial penalty to steal PAN & Banking OTPs.",
+      "signals": [
+        {
+          "category": "Language Signals",
+          "name": "Urgency & Fear Tactics",
+          "scoreImpact": 24,
+          "severity": "CRITICAL",
+          "explanation": "Uses words 'URGENT', 'BLOCKED TODAY', 'FINE OF RS 10,000' to bypass logical reasoning."
+        },
+        {
+          "category": "Social Engineering",
+          "name": "Government/Bank Impersonation",
+          "scoreImpact": 26,
+          "severity": "CRITICAL",
+          "explanation": "Claims to represent State Bank of India and Income Tax PAN verification."
+        },
+        {
+          "category": "URL Signals",
+          "name": "Unverified Link Included",
+          "scoreImpact": 20,
+          "severity": "HIGH",
+          "explanation": "Contains shortened non-official domain sbi-pan-update.top."
+        },
+        {
+          "category": "Social Engineering",
+          "name": "Financial Penalty Threat",
+          "scoreImpact": 18,
+          "severity": "HIGH",
+          "explanation": "Threatens monetary loss (Rs 10,000) to force immediate action."
+        }
+      ],
+      "actions": [
+        "NEVER CLICK ON LINKS RECEIVED VIA UNVERIFIED SMS",
+        "BANKS NEVER SEND SUSPENSION THREATS WITH HTTP LINKS VIA SMS",
+        "VERIFY ACCOUNT STATUS ONLY BY LOGGING IN AT OFFICIAL WEBSITE (sbi.co.in) OR YONO APP",
+        "FORWARD SMS TO 1909 (TRAI SPAM REPORTING)"
+      ]
+    },
+    {
+      "id": "SCAN-71049",
+      "timestamp": "2026-08-14T05:30:00.000Z",
+      "type": "qr",
+      "target": "upi://pay?pa=refund-desk-sbi@ybl&pn=SBI%20Refund%20Service&am=15000&cu=INR",
+      "verdict": "SUSPICIOUS",
+      "severity": "SUSPICIOUS",
+      "riskScore": 68,
+      "confidence": 89,
+      "threatType": "UPI PAY SCAM",
+      "summary": "Reverse QR Code Scam masquerading as a 'Refund Service'. Scanning this QR code will DEDUCT Rs 15,000 from your account, NOT credit it.",
+      "signals": [
+        {
+          "category": "Behavior Signals",
+          "name": "Reverse Payment Debit Trigger",
+          "scoreImpact": 30,
+          "severity": "CRITICAL",
+          "explanation": "QR payload requests a DEBIT transaction of Rs 15,000 under the guise of a refund."
+        },
+        {
+          "category": "Social Engineering",
+          "name": "Fake VPA Handle Name",
+          "scoreImpact": 20,
+          "severity": "HIGH",
+          "explanation": "VPA 'refund-desk-sbi@ybl' uses a third-party handle (@ybl) instead of official SBI domain."
+        },
+        {
+          "category": "Language Signals",
+          "name": "Misleading Display Name",
+          "scoreImpact": 18,
+          "severity": "MEDIUM",
+          "explanation": "Merchant name labeled 'SBI Refund Service' to deceive victims into entering UPI PIN."
+        }
+      ],
+      "actions": [
+        "REMEMBER: YOU NEVER NEED TO ENTER A UPI PIN TO RECEIVE MONEY",
+        "DO NOT SCAN OR CONFIRM PAYMENT ON THIS QR CODE",
+        "REPORT VPA HANDLE ON YOUR UPI APP (GPay / PhonePe / Paytm / BHIM)"
+      ]
+    },
+    {
+      "id": "SCAN-62114",
+      "timestamp": "2026-08-13T19:20:00.000Z",
+      "type": "url",
+      "target": "https://www.irctc.co.in/nget/train-search",
+      "verdict": "SAFE",
+      "severity": "SAFE",
+      "riskScore": 4,
+      "confidence": 99,
+      "threatType": "LEGITIMATE WEBSITE",
+      "summary": "Official website of Indian Railway Catering and Tourism Corporation (IRCTC). High domain trust & valid SSL certificate.",
+      "signals": [
+        {
+          "category": "Domain Signals",
+          "name": "Verified Official Domain",
+          "scoreImpact": 0,
+          "severity": "SAFE",
+          "explanation": "Matches registered Govt/Official entity domain list."
+        },
+        {
+          "category": "URL Signals",
+          "name": "Valid Extended Validation SSL",
+          "scoreImpact": 0,
+          "severity": "SAFE",
+          "explanation": "SSL certificate issued to Indian Railway Catering & Tourism Corp Ltd."
+        }
+      ],
+      "actions": [
+        "SAFE TO PROCEED",
+        "ENSURE HTTPS LOCK ICON REMAINS VISIBLE IN YOUR BROWSER ADDRESS BAR"
+      ]
+    }
+  ],
+  "threats": [
+    {
+      "id": "THREAT-101",
+      "title": "SBI & HDFC Netbanking Phishing Campaign",
+      "category": "Banking Fraud",
+      "origin": "IN / RU",
+      "riskLevel": "CRITICAL",
+      "affectCount": 14200,
+      "activeDomains": [
+        "sbi-netbanking-verification-online.xyz",
+        "hdfc-security-update-portal.top",
+        "sbi-yono-kyc-fix.click"
+      ],
+      "description": "Mass SMS campaign targeting Indian bank account holders claiming urgent KYC/PAN blockage with spoofed login portals harvesting OTPs.",
+      "updatedAt": "2026-08-14T09:00:00.000Z"
+    },
+    {
+      "id": "THREAT-102",
+      "title": "OLX / Telegram UPI QR Collect Trap",
+      "category": "UPI Scams",
+      "origin": "IN",
+      "riskLevel": "HIGH",
+      "affectCount": 8900,
+      "activeDomains": [
+        "upi-refund-portal.site",
+        "olx-army-pay.online"
+      ],
+      "description": "Fraudsters posing as army personnel or buyers sending QR codes asking sellers to scan to 'receive advance payment'.",
+      "updatedAt": "2026-08-14T08:30:00.000Z"
+    },
+    {
+      "id": "THREAT-103",
+      "title": "Part-Time Work From Home Telegram Scam",
+      "category": "Job Scams",
+      "origin": "SE Asia",
+      "riskLevel": "CRITICAL",
+      "affectCount": 24500,
+      "activeDomains": [
+        "task-vip-earn.com",
+        "youtube-like-pay.net"
+      ],
+      "description": "Victims recruited via WhatsApp to like YouTube videos for money, then lured into depositing lakhs into crypto/fake investment accounts.",
+      "updatedAt": "2026-08-14T07:45:00.000Z"
+    },
+    {
+      "id": "THREAT-104",
+      "title": "FedEx / India Post Customs Clearance Bait",
+      "category": "Delivery Scams",
+      "origin": "IN / CN",
+      "riskLevel": "HIGH",
+      "affectCount": 11200,
+      "activeDomains": [
+        "indpost-tracking-parcel.xyz",
+        "fedex-customs-pay.top"
+      ],
+      "description": "SMS alerts claiming parcel on hold due to missing address or unpaid duty fee of Rs 48, linking to phishing form collecting card details.",
+      "updatedAt": "2026-08-14T06:15:00.000Z"
+    }
+  ],
+  "reports": [],
+  "alerts": [
+    {
+      "id": "ALT-901",
+      "timestamp": "2026-08-14T09:15:00.000Z",
+      "title": "CRITICAL THREAT ALERT: Waves of Banking Phishing SMS Detected",
+      "message": "Over 450 spoofed domain links mimicking SBI and HDFC netbanking detected across North & West India regional SMS gateways.",
+      "severity": "CRITICAL",
+      "category": "Banking Threat",
+      "read": false
+    },
+    {
+      "id": "ALT-902",
+      "timestamp": "2026-08-14T08:00:00.000Z",
+      "title": "SECURITY ADVISORY: Electric Bill Power Cut SMS Fraud",
+      "message": "Beware of fake messages claiming electricity connection will be disconnected tonight. Do not call numbers provided in SMS.",
+      "severity": "HIGH",
+      "category": "Govt/Utility Scam",
+      "read": false
+    },
+    {
+      "id": "ALT-903",
+      "timestamp": "2026-08-13T16:00:00.000Z",
+      "title": "Engine Upgrade Complete",
+      "message": "CyberShield Engine v2.4 initialized with dynamic UPI VPA validator & homoglyph detection algorithms.",
+      "severity": "INFO",
+      "category": "System Alert",
+      "read": true
+    }
+  ],
+  "education": [
+    {
+      "id": "edu_phishing_101",
+      "title": "Mastering Phishing & Lookalike Domains",
+      "category": "Phishing",
+      "level": "Beginner",
+      "xpReward": 150,
+      "readTime": "4 mins",
+      "description": "Learn how attackers craft spoofed URLs with homoglyphs, subdomains, and suspicious TLDs to mimic top Indian banks.",
+      "content": "Phishing attacks rely on deceiving users into mistaking malicious websites for trusted institutions. Attackers use lookalike domains (e.g., sbl.com using 'l' instead of 'i'), subdomains (e.g., sbi.com.malicious-site.com), and urgent wording in SMS/Email to bypass suspicion.",
+      "quiz": {
+        "question": "You receive an SMS: 'Your bank account is locked. Update KYC at http://sbi.kyc-verification.top'. What is the primary indicator of fraud?",
+        "options": [
+          "The domain uses .top and is not the official sbi.co.in website",
+          "The SMS mentions KYC",
+          "The link opens in a web browser",
+          "The bank sent an SMS"
+        ],
+        "correctIndex": 0,
+        "explanation": "Official State Bank of India portals operate on sbi.co.in or bank.sbi. Non-official TLDs like .top combined with subdomains are classic phishing setups."
+      }
+    },
+    {
+      "id": "edu_upi_scam",
+      "title": "Decoding Reverse UPI QR Code Fraud",
+      "category": "UPI Scams",
+      "level": "Intermediate",
+      "xpReward": 200,
+      "readTime": "5 mins",
+      "description": "Understand why entering a UPI PIN on a received QR code or collect request ALWAYS deducts money from your bank account.",
+      "content": "A cardinal rule of Unified Payments Interface (UPI) is: YOU ONLY NEED A PIN TO SEND MONEY, NEVER TO RECEIVE IT. Scammers on OLX or Telegram send 'Payment QR Codes' claiming scanning them will credit money into your account.",
+      "quiz": {
+        "question": "A buyer on OLX sends you a QR code claiming it will transfer Rs 5,000 into your account for an item. What happens if you scan and enter your UPI PIN?",
+        "options": [
+          "Rs 5,000 will be credited into your account",
+          "Rs 5,000 will be DEDUCTED from your account",
+          "The payment request will be canceled",
+          "Your UPI app will automatically block the buyer"
+        ],
+        "correctIndex": 1,
+        "explanation": "Entering your UPI PIN authorizes a payment OUT of your bank account. Scammers exploit this misunderstanding to steal funds."
+      }
+    },
+    {
+      "id": "edu_otp_safety",
+      "title": "OTP Protection & Screen Sharing Traps",
+      "category": "OTP Safety",
+      "level": "Essential",
+      "xpReward": 150,
+      "readTime": "3 mins",
+      "description": "How fraudsters trick users into sharing OTPs via fake customer support calls or AnyDesk/TeamViewer apps.",
+      "content": "One-Time Passwords (OTPs) serve as the final line of defense for digital transactions. Fraudsters often pose as customer care executives or bank officials asking you to download remote access apps (AnyDesk, QuickSupport) or read out OTPs.",
+      "quiz": {
+        "question": "A caller claiming to be from customer support asks you to download 'AnyDesk' to fix a failed transaction refund. Should you proceed?",
+        "options": [
+          "Yes, download it so they can fix the error",
+          "No, remote desktop apps allow attackers to view your screen and steal OTPs in real-time",
+          "Yes, but only if they give their employee ID",
+          "No, unless they promise a cashback bonus"
+        ],
+        "correctIndex": 1,
+        "explanation": "Remote access tools grant full control over your smartphone screen. Scammers view incoming SMS OTPs and drain accounts instantly."
+      }
+    }
+  ],
+  "scamReports": [],
+  "stats": {
+    "total_scans": 1,
+    "safe_count": 1,
+    "suspicious_count": 0,
+    "dangerous_count": 0,
+    "url_scans": 1,
+    "message_scans": 0,
+    "qr_scans": 0,
+    "image_scans": 0
+  }
+}
